@@ -1,0 +1,11 @@
+﻿.bl_mainContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+
+    height: 100vh;
+}
+
+.bl_fullscreen {
+    grid-area: 1 / 1 / 4 / 4;
+}

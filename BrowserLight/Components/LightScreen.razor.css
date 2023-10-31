@@ -1,0 +1,9 @@
+﻿.lightScreen {
+    width: 100%;
+    height: 100%;
+    background-color: #f00;
+}
+
+.lightScreen_anim_change {
+    transition: background-color 1000ms linear;
+}

@@ -1,0 +1,48 @@
+﻿@page "/"
+
+<PageTitle>Browser light</PageTitle>
+
+
+<div class="bl_mainContainer">
+    <div class="bl_fullscreen">
+        <LightScreen ColorString=@color></LightScreen>
+    </div>
+    <div class="bl_fullscreen">
+        <div @ref=popupAnchor></div>
+        <Radzen.Blazor.Rendering.Popup @ref=popup Lazy=true Open=@OnOpen Close=@OnClose
+                                       Style="display:none;position:absolute;">
+            <RadzenColorPicker @bind-Value=@color ShowHSV=true ShowRGBA=true ShowColors=true ShowButton=false />
+        </Radzen.Blazor.Rendering.Popup>
+    </div>
+    <div class="bl_fullscreen">
+        <div @ref=popupTrigger style=@PopupStyle() @onclick="@TogglePopupAsync"></div>
+    </div>
+</div>
+
+
+@code
+{
+    ElementReference popupAnchor;
+    ElementReference popupTrigger;
+    Radzen.Blazor.Rendering.Popup? popup;
+    string color = "rgb(68, 58, 110)";
+    bool popupOpen;
+
+    Task TogglePopupAsync(MouseEventArgs args)
+    {
+        return popup?.ToggleAsync(popupAnchor) ?? Task.CompletedTask;
+    }
+
+    void OnOpen()
+    {
+        popupOpen = true;
+    }
+    void OnClose()
+    {
+        popupOpen = false;
+    }
+    string PopupStyle()
+    {
+        return popupOpen ? "" : "width: 100%; height: 100%;";
+    }
+}

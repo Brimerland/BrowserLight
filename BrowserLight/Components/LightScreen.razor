@@ -1,0 +1,13 @@
+﻿@using static FormattableString;
+
+<div class="lightScreen lightScreen_anim_change" style=@ComputeStyle()></div>
+
+@code {
+    [Parameter]
+    public string ColorString { get; set; } = "#fff";
+
+    string ComputeStyle()
+    {
+        return @Invariant($@"background-color: {ColorString};");
+    }
+}
